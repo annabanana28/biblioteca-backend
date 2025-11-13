@@ -1,0 +1,1 @@
+{"version":3,"file":"EmprestimoController.d.ts","sourceRoot":"","sources":["../../src/controller/EmprestimoController.ts"],"names":[],"mappings":"AACA,OAAO,UAAU,MAAM,yBAAyB,CAAC;AACjD,OAAO,KAAK,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAC;AAEjD,cAAM,oBAAqB,SAAQ,UAAU;WAC5B,KAAK,CAAC,GAAG,EAAE,OAAO,EAAE,GAAG,EAAE,QAAQ,GAAG,OAAO,CAAC,QAAQ,CAAC;CAcrE;AAED,eAAe,oBAAoB,CAAA"}
