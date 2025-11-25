@@ -73,31 +73,54 @@ class Emprestimo {
         this.status_emprestimo = _status_emprestimo;
     }
 
-        static async listarEmprestimo(): Promise<Array<Emprestimo> | null> {
+
+    static async listarEmprestimo(): Promise<any[] | null> {
         try {
-            let listaDeEmprestimo: Array<Emprestimo> = [];
-            const querySelectEmprestimo = `SELECT * FROM emprestimo;`;
-            const respostaBD = await database.query(querySelectEmprestimo);
+            const query = `
+                SELECT 
+                    e.id_emprestimo,
+                    e.data_emprestimo,
+                    e.data_devolucao,
+                    e.status_emprestimo,
 
-            respostaBD.rows.forEach((emprestimoBD) => {
-                const novoEmprestimo: Emprestimo = new Emprestimo(
-                    emprestimoBD.id_aluno,
-                    emprestimoBD.id_livro,
-                    emprestimoBD.data_emprestimo,
-                    emprestimoBD.data_devolucao,
-                    emprestimoBD.status_emprestimo
-                );
+                    a.id_aluno,
+                    a.nome AS aluno_nome,
+                    a.email AS aluno_email,
 
-                novoEmprestimo.setIdLivro(emprestimoBD.id_emprestimo);
+                    l.id_livro,
+                    l.titulo AS livro_titulo,
+                    l.autor AS livro_autor
 
-                listaDeEmprestimo.push(novoEmprestimo);
-            });
+                FROM emprestimo e
+                INNER JOIN aluno a ON a.id_aluno = e.id_aluno
+                INNER JOIN livro l ON l.id_livro = e.id_livro;
+            `;
 
-            return listaDeEmprestimo;
+            const respostaBD = await database.query(query);
+
+            const lista = respostaBD.rows.map((row) => ({
+                id_emprestimo: row.id_emprestimo,
+                data_emprestimo: row.data_emprestimo,
+                data_devolucao: row.data_devolucao,
+                status_emprestimo: row.status_emprestimo,
+
+                aluno: {
+                    id: row.id_aluno,
+                    nome: row.aluno_nome,
+                    email: row.aluno_email
+                },
+
+                livro: {
+                    id: row.id_livro,
+                    titulo: row.livro_titulo,
+                    autor: row.livro_autor
+                }
+            }));
+
+            return lista;
+
         } catch (error) {
-            console.error(`Erro na consulta ao banco de dados. ${error}`);
-
-
+            console.error(`Erro ao listar empréstimos: ${error}`);
             return null;
         }
     }

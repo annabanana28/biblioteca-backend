@@ -32,7 +32,7 @@ declare class Livro {
     getStatus(): string;
     setStatus(_status_livro_emprestado: string): void;
     static cadastrarLivro(livro: LivroDTO): Promise<boolean>;
-    static listarLivro(): Promise<Array<Livro> | null>;
+    static listarLivros(): Promise<Array<Livro> | null>;
 }
 export default Livro;
 //# sourceMappingURL=Livro.d.ts.map

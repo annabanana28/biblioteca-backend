@@ -6,7 +6,8 @@ class AlunoController extends Aluno {
     static async todos(req: Request, res: Response): Promise<Response> {
         try {
 
-            const listaAluno: Array<Aluno> | null = await Aluno.listarAluno();
+            const listaAluno: Array<Aluno> | null = await Aluno.listarAlunos();
+
 
 
             return res.status(200).json(listaAluno);

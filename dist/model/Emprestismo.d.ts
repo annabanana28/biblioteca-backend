@@ -18,7 +18,7 @@ declare class Emprestimo {
     setDataDevolucao(_data_devolucao: Date): void;
     getStatusEmprestimo(): string;
     setStatusEmprestimo(_status_emprestimo: string): void;
-    static listarEmprestimo(): Promise<Array<Emprestimo> | null>;
+    static listarEmprestimo(): Promise<any[] | null>;
 }
 export default Emprestimo;
 //# sourceMappingURL=Emprestismo.d.ts.map

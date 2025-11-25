@@ -26,7 +26,7 @@ declare class Aluno {
     getCelular(): number;
     setCelular(_celular: number): void;
     static cadastrarAluno(aluno: AlunoDTO): Promise<boolean>;
-    static listarAluno(): Promise<Array<Aluno> | null>;
+    static listarAlunos(): Promise<Array<Aluno> | null>;
 }
 export default Aluno;
 //# sourceMappingURL=Aluno.d.ts.map
