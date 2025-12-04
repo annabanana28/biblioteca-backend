@@ -5,7 +5,7 @@ const database = new DatabaseModel().pool;
 
 class Aluno {
     private id_aluno: number = 0;
-    private ra: string;
+    private ra: string = ""
     private nome: string;
     private sobrenome: string;
     private data_nascimento: Date;
@@ -14,7 +14,6 @@ class Aluno {
     private celular: number;
 
     constructor(
-        _ra: string,
         _nome: string,
         _sobrenome: string,
         _data_nascimento: Date,
@@ -22,7 +21,6 @@ class Aluno {
         _email: string,
         _celular: number
     ) {
-        this.ra = _ra;
         this.nome = _nome;
         this.sobrenome = _sobrenome;
         this.data_nascimento = _data_nascimento;
@@ -144,8 +142,7 @@ class Aluno {
                     alunoBD.sobrenome,
                     alunoBD.data_nascimento,
                     alunoBD.endereco,
-                    alunoBD.email,
-                    alunoBD.celular
+                    alunoBD.email
                 );
 
                 novoAluno.setIdAluno(alunoBD.id_aluno);

@@ -4,14 +4,14 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "dev": "ts-node src/server.ts",
+    "dev": "ts-node src/app.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/app.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^5.1.0",
+    "express": "^5.2.1",
     "pg": "^8.16.3",
     "prompt-sync": "^4.2.0",
     "typescript-require": "^0.3.0"
@@ -19,9 +19,27 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/dotenv": "^6.1.1",
-    "@types/express": "^5.0.5",
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.10.1",
     "@types/pg": "^8.15.6",
+    "nodemon": "^3.1.11",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
-  }
+  },
+  "description": "",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/annabanana28/biblioteca-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "types": "./dist/server.d.ts",
+  "bugs": {
+    "url": "https://github.com/annabanana28/biblioteca-backend/issues"
+  },
+  "homepage": "https://github.com/annabanana28/biblioteca-backend#readme"
 }

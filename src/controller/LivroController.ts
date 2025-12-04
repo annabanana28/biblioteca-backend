@@ -5,7 +5,7 @@ class LivroController extends Livro {
 
     static async todos(req: Request, res: Response): Promise<Response> {
         try {
-          const listaLivro: Array<Livro> | null = await Livro.listarLivros();
+            const listaLivro: Array<Livro> | null = await Livro.listarLivros();
 
             return res.status(200).json(listaLivro);
         } catch (error) {
