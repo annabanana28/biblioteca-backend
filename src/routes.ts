@@ -1,8 +1,9 @@
 import { Router } from "express";
 import type { Request, Response } from "express";
+
 import AlunoController from "./controller/AlunoController.js";
-import EmprestimoController from "./controller/EmprestimoController.js";
 import LivroController from "./controller/LivroController.js";
+import EmprestimoController from "./controller/EmprestimoController.js";
 
 const router = Router();
 
@@ -12,5 +13,11 @@ router.get("/api", (req: Request, res: Response) => {
 
 router.get("/api/aluno", AlunoController.todos);
 router.post("/api/cadastrar/aluno", AlunoController.novo);
+
+router.get("/api/livro", LivroController.todos);
+router.post("/api/cadastrar/livro", LivroController.novo);
+
+router.get("/api/emprestimo", EmprestimoController.todos);
+
 
 export default router;

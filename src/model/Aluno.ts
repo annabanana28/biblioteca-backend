@@ -5,7 +5,7 @@ const database = new DatabaseModel().pool;
 
 class Aluno {
     private id_aluno: number = 0;
-    private ra: string = ""
+    private ra: string = "";
     private nome: string;
     private sobrenome: string;
     private data_nascimento: Date;
@@ -94,6 +94,9 @@ class Aluno {
     }
 
 
+    // ============================================================
+    // CADASTRAR
+    // ============================================================
     static async cadastrarAluno(aluno: AlunoDTO): Promise<boolean> {
         try {
             const queryInsertAluno = `
@@ -108,8 +111,8 @@ class Aluno {
                 aluno.nome.toUpperCase(),
                 aluno.sobrenome.toUpperCase(),
                 aluno.data_nascimento,
-                aluno.endereco.toUpperCase(), //* CORRIGIDO
-                aluno.email.toUpperCase(),    //* CORRIGIDO
+                aluno.endereco.toUpperCase(),
+                aluno.email.toUpperCase(),
                 aluno.celular
             ]);
 
@@ -129,23 +132,33 @@ class Aluno {
     }
 
 
+    // ============================================================
+    // LISTAR TODOS (CORRIGIDO E ORDENDADO)
+    // ============================================================
     static async listarAlunos(): Promise<Array<Aluno> | null> {
         try {
             const listaDeAluno: Array<Aluno> = [];
-            const querySelectAluno = `SELECT * FROM aluno;`;
+
+            const querySelectAluno = `
+                SELECT * FROM aluno
+                ORDER BY id_aluno ASC;
+            `;
+
             const respostaBD = await database.query(querySelectAluno);
 
             respostaBD.rows.forEach((alunoBD: any) => {
                 const novoAluno = new Aluno(
-                    alunoBD.ra,
                     alunoBD.nome,
                     alunoBD.sobrenome,
                     alunoBD.data_nascimento,
                     alunoBD.endereco,
-                    alunoBD.email
+                    alunoBD.email,
+                    alunoBD.celular
                 );
 
                 novoAluno.setIdAluno(alunoBD.id_aluno);
+                novoAluno.setRa(alunoBD.ra);
+
                 listaDeAluno.push(novoAluno);
             });
 
